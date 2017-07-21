@@ -55,18 +55,17 @@ public class UserController {
     //-------------------Create a User--------------------------------------------------------
      
     @RequestMapping(value = "/user/create", method = RequestMethod.POST)
-    public ResponseEntity<Void> createUser(@RequestBody User user) {
+    public ResponseEntity<String> createUser(@RequestBody User user) {
         System.out.println("Creating User " + user.getName());
  
         User userRet = userService.findById(user.getUserId(), user.getPassword());
-        System.out.println("after find");
         if (userRet != null ) {
             System.out.println("A User with name " + user.getName() + " already exist");
-            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+            return new ResponseEntity<String>(HttpStatus.CONFLICT);
         }
 
         userService.saveUser(user);
-        return new ResponseEntity<Void>( HttpStatus.CREATED);
+        return new ResponseEntity<String>( "user created",HttpStatus.CREATED);
     }
     
     

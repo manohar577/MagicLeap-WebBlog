@@ -41,12 +41,13 @@ public class PostServiceDao {
 			 int postid = Integer.parseInt(id) + 1;
 			
 			PreparedStatement preparedStatement = connection
-					.prepareStatement("insert into posts(postid,postdetails,postdate,userid) values (?,?,?,?)");
+					.prepareStatement("insert into posts(postid,postdetails,postdate,userid, posttitle) values (?,?,?,?,?)");
 			
 			preparedStatement.setString(1, postid+"");
 			preparedStatement.setString(2, post.getPostdetails());
 			preparedStatement.setTimestamp(3, getDateTime());
 			preparedStatement.setString(4, post.getUserid());
+			preparedStatement.setString(5, post.getPosttitle());
 			preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
@@ -59,12 +60,14 @@ public class PostServiceDao {
 	public void updatePost(Post post) throws ParseException {
 		try {
 			PreparedStatement preparedStatement = connection
-					.prepareStatement("update posts set postdetails=?,postdate=?,userid=?" +
+					.prepareStatement("update posts set postdetails=?,postdate=?,userid=?,posttitle=?" +
 							"where postid=?");
+			System.out.println("indao"+post.getPosttitle());
 			preparedStatement.setString(1, post.getPostdetails());
 			preparedStatement.setTimestamp(2, getDateTime());
 			preparedStatement.setString(3, post.getUserid());
-			preparedStatement.setString(4, post.getPostid());
+			preparedStatement.setString(4, post.getPosttitle());
+			preparedStatement.setString(5, post.getPostid());
 			preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
@@ -100,6 +103,7 @@ public class PostServiceDao {
 				post.setPostdetails(rs.getString("postdetails"));
 				post.setPostdate(rs.getDate("postdate"));				
 				post.setUserid(rs.getString("userid"));
+				post.setPosttitle(rs.getString("posttitle"));
 				
 				posts.add(post);
 			}
@@ -123,6 +127,7 @@ public class PostServiceDao {
 				post.setPostdetails(rs.getString("postdetails"));
 				post.setPostdate(rs.getDate("postdate"));				
 				post.setUserid(rs.getString("userid"));
+				post.setPosttitle(rs.getString("posttitle"));
 				
 				posts.add(post);
 			}
@@ -146,6 +151,7 @@ public class PostServiceDao {
 				post.setPostdetails(rs.getString("postdetails"));
 				post.setPostdate(rs.getDate("postdate"));				
 				post.setUserid(rs.getString("userid"));
+				post.setPosttitle(rs.getString("posttitle"));
 				
 			}
 		} catch (SQLException e) {

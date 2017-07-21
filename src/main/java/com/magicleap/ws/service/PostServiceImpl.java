@@ -55,6 +55,8 @@ PostServiceDao postServiceDao;
         	currentPost.setPostdetails(post.getPostdetails());
         if(post.getPostdate() != null)
         	currentPost.setPostdate(post.getPostdate());
+        if(post.getPosttitle() != null)
+        	currentPost.setPosttitle(post.getPosttitle());
         
         try {
         	postServiceDao.updatePost(currentPost);

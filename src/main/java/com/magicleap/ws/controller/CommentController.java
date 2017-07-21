@@ -31,7 +31,7 @@ public class CommentController {
     }
  
      
-    @RequestMapping(value = "/comment/{id}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/comment/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Comment>> getCommentsByPost(@PathVariable("id") String postId) {
         System.out.println("Fetching All comments for post with id " + postId);
         List<Comment> comments = commentService.findCommentsByPostId(postId);

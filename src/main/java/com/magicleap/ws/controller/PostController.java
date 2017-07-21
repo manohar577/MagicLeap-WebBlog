@@ -34,11 +34,11 @@ public class PostController {
     }
  
      
-    @RequestMapping(value = "/post/{id}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/post/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Post>> getPost(@PathVariable("id") String userId) {
         System.out.println("Fetching All posts for User with id " + userId);
         List<Post> posts = postService.findPostByUserId(userId);
-        if (posts!=null &&  posts.isEmpty()) {
+        if (posts==null ||  posts.isEmpty()) {
             System.out.println("No posts exist with id " + userId);
             return new ResponseEntity<List<Post>>(HttpStatus.NOT_FOUND);
         }

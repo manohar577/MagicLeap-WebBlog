@@ -12,7 +12,21 @@ public class Post {
 	
 	private String userid;
 	
+	private String posttitle;
 
+
+
+	public String getPosttitle() {
+		return posttitle;
+	}
+
+
+
+
+
+	public void setPosttitle(String posttitle) {
+		this.posttitle = posttitle;
+	}
 
 
 
