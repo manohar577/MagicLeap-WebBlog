@@ -1,1 +1,1 @@
-# MagicLeap-WebBlog
+# WebBlog
